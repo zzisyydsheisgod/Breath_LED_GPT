@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/imx6ul",
+                "${workspaceFolder}/bsp/clk",
+                "${workspaceFolder}/bsp/led",
+                "${workspaceFolder}/bsp/delay",
+                "${workspaceFolder}/bsp/beep",
+                "${workspaceFolder}/bsp/gpio",
+                "${workspaceFolder}/bsp/key",
+                "${workspaceFolder}/bsp/exit",
+                "${workspaceFolder}/bsp/int",
+                "${workspaceFolder}/bsp/epittimer",
+                "${workspaceFolder}/bsp/keyfilter",
+                "${workspaceFolder}/bsp/pwm"
+
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}
