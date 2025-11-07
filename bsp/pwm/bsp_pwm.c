@@ -43,14 +43,9 @@ void gpt_pwm_init(void)
 {
     // 配置GPIO1_IO03为普通GPIO输出模式 (ALT5)
     IOMUXC_SetPinMux(IOMUXC_GPIO1_IO03_GPIO1_IO03, 0x0U);  
-    IOMUXC_SetPinConfig(IOMUXC_GPIO1_IO03_GPIO1_IO03, 0x10B0U);
+    IOMUXC_SetPinConfig(IOMUXC_GPIO1_IO03_GPIO1_IO03, 0x10B1U);
     
-    // 初始化GPIO1_IO03为输出模式
-    gpio_pin_config_t led_config;
-    led_config.direction = kGPIO_DigitalOutput;
-    led_config.outputLogic = 0;
-    led_config.interruptMode = kGPIO_NoIntmode;
-    gpio_init(GPIO1, 3, &led_config);
+
 
     // 设置初始GPIO为低电平
     gpio_pinwrite(GPIO1, 3, 0);
@@ -68,7 +63,7 @@ void gpt_pwm_init(void)
      * bit8:6   001 GPT时钟源选择ipg_clk = 66MHz
      * bit3:0   010 分频值加1，即真正的分频值为3
      */
-    GPT1->CR = (1 << 6) | (2 << 0);
+    GPT1->CR = (1 << 6);
     
     // GPT的PR寄存器,分频设置为65,即66分频，定时器时钟为1MHz (1us精度)
     GPT1->PR = 65;
@@ -99,8 +94,8 @@ void gpt_pwm_init(void)
  */
 void gpt_pwm_set_duty(unsigned int duty)
 {
-    if(duty > 1000)
-        duty = 1000;
+    if(duty > pwm_period)
+        duty = pwm_period;
     
     pwm_duty = duty;
 }
